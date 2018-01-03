@@ -1,0 +1,14 @@
+# Random stuffs
+
+*.swp
+*.un~
+*.bk
+**/*.log
+
+# The machine
+.vagrant/
+
+# vim sync folder
+sync/**/bundle
+sync/**/.cache
+
