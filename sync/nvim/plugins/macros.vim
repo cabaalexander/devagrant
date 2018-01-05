@@ -4,7 +4,7 @@
 let @f='afunction () {}iOi'
 
 " Object
-let @o='a{}iOi=='
+let @o='a{}iOi'
 
 " Console.log
 let @l='oconsole.log();==f)'

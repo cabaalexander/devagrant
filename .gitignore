@@ -3,7 +3,7 @@
 *.swp
 *.un~
 *.bk
-**/*.log
+*.log
 
 # The machine
 .vagrant/

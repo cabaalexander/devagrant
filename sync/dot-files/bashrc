@@ -118,3 +118,10 @@ export NVM_DIR="/home/vagrant/.nvm"
 
 DISPLAY=:1
 
+filetypeb(){
+  local INPUT_FILE=$1
+
+  tr -d '\r' < ${INPUT_FILE} > tmp
+  mv -f tmp ${INPUT_FILE}
+}
+
