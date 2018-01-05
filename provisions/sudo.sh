@@ -1,18 +1,27 @@
 #!/bin/bash
 
+echo "[Provision] sudo.sh"
+
+# This is to install apps without showing a bunch stuffs on the stdout
+install-app(){
+  local APP=$1
+
+  echo "[Installing] ${APP}"
+  apt-get install -y ${APP} &> /dev/null
+}
+
 apt-get update
 
 # General stuffs
-apt-get install -y tree
-apt-get install -y git
-apt-get install -y xclip
-apt-get install -y tmux
-apt-get install -y python3-pip
+install-app tree
+install-app git
+install-app tmux
+install-app python3-pip
 
 
 # Install NVIM
-apt-get install -y software-properties-common
+install-app software-properties-common
 add-apt-repository -y ppa:neovim-ppa/unstable
 apt-get update
-apt-get install -y neovim
+install-app neovim
 

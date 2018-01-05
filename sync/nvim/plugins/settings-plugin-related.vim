@@ -17,6 +17,9 @@ let g:user_emmet_leader_key = '<C-Z>'
 
 
 " Awesome vim color scheme
-colorscheme gruvbox
-set background=dark
+try
+  colorscheme gruvbox
+  set background=dark
+catch
+endtry
 
