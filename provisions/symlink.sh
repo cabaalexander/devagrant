@@ -2,6 +2,38 @@
 
 echo "[Provision] symlink.sh"
 
+lnDir(){
+  local SOURCE=$1
+  local TARGET=$2
+
+  if [ -z ${TARGET} ]
+  then
+    echo "[Error] Missing Target"
+    return 1
+  fi
+
+  # This normalizes the local path i.e. `./some-directory`
+  local SOURCE_ABS_PATH=$(cd ${SOURCE} 2> /dev/null; pwd)
+
+  # If no `SOURCE_ABS_PATH` return
+  if [ "${PWD}" = "${SOURCE_ABS_PATH}" ]
+  then
+    echo "[Error] Source not a valid path"
+    return 1
+  fi
+
+  # Just the name of the source directory
+  local SOURCE_BASENAME=$(basename ${SOURCE})
+  local TARGET_ABS_PATH=${TARGET}${SOURCE_BASENAME}
+
+
+  # This removes the directory to avoid `ln` overwrite error
+  [ -d ${TARGET_ABS_PATH} ] && rm -rf ${TARGET_ABS_PATH}
+
+  # Aaaaand... Action!
+  ln -sfv ${SOURCE_ABS_PATH} ${TARGET}
+}
+
 # Dot files
 
 DIR_PATH=/vagrant/sync/dot-files
@@ -19,26 +51,19 @@ done
 
 # Symlink to the '~/config/nvim' directory (Special case)
 
-## If no '~/.config' directory create it
+## If no '~/.config' directory create it (Just in this case)
 CONFIG_PATH=${HOME}/.config
 [ ! -d ${CONFIG_PATH} ] && mkdir -pv ${CONFIG_PATH}
 
-## If '~/.config/nvim' directory remove it to avoid `ln` overwrite error
-NVIM_CONFIG_PATH=${CONFIG_PATH}/nvm
+# Directory symlinks
+lnDir /vagrant/sync/nvim/ ${CONFIG_PATH}/
+lnDir /vagrant/sync/bin/ ${HOME}/
 
-## Then create the symlink
-[ -d ${NVIM_CONFIG_PATH} ] && rm -rfv ${NVIM_CONFIG_PATH}
-ln -sfv /vagrant/sync/nvim/ ${HOME}/.config/
-
-# Symlink to the '~/bin' directory (Special case)
-
-## If '~/bin' directory remove it to avoid `ln` overwrite error
-BIN_PATH=${HOME}/bin
-[ -d ${BIN_PATH} ] && rm -rfv ${BIN_PATH}
-
-## Then create the symlink
-ln -sfv /vagrant/sync/bin/ ${HOME}/
+# Copy ssh (Copy instead of `ln` because of permision)
+cp -rf /vagrant/config/.ssh/ ${HOME}/
+chmod 400 ~/.ssh/id_rsa*
 
 # Basic settings for VIM (Not neovim)
-ln -sfv ${HOME}/.config/nvim/plugins/settings.vim ${HOME}/.vimrc
+# This needs to be at the bottom becase is a symlink of a symlink ¯\_(ツ)_/¯
+ln -sfv ${CONFIG_PATH}/nvim/plugins/settings.vim ${HOME}/.vimrc
 

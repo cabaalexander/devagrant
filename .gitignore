@@ -1,9 +1,11 @@
 # Random stuffs
-
 *.swp
 *.un~
 *.bk
 *.log
+
+# Directories
+config/
 
 # The machine
 .vagrant/

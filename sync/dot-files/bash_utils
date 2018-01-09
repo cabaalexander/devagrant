@@ -1,0 +1,171 @@
+### Git
+
+# Alias to push. Validated and stuffs
+gps(){
+  currentBranch=`git symbolic-ref --short -q HEAD` # `` to run commands
+  if [ ! -z $1 ]; then
+    case $1 in
+      "-f")
+        if [ ${currentBranch} == "master" ]; then
+          echo "NO FORCE PUSH ON ${currentBranch^^} =.='"
+        else
+          git push origin ${currentBranch} -f $2
+        fi
+        ;;
+      "-nv")
+          git push origin ${currentBranch} -f --no-verify
+        ;;
+      *)
+        echo -e "Options:\n\t[]\tNormal Push\n\t[-f]\tForce update"
+        ;;
+    esac
+  else
+    if [ ${currentBranch} == "master" ]; then
+      echo "NO PUSH ON ${currentBranch^^} >.>'"
+    else
+      git push origin ${currentBranch}
+    fi
+  fi
+}
+
+# Displays current github user, password and ssh key
+ginfo(){
+  clear
+  git config --global user.name
+  git config --global user.email
+  echo
+
+  if [ -f ~/.ssh/id_rsa.pub ]; then
+    cat ~/.ssh/id_rsa.pub | grep -e "\w*@\w*\.com.*"
+    ls -l ~/.ssh/
+  else
+    echo ':: NO SSH AVAILABLE ::'
+  fi
+}
+
+# If you are on master branch returns true otherwise false
+checkIfMaster(){
+  if [ ! -d "`pwd`/.git" ]; then
+    echo [Error] No git repository on this path
+    return
+  fi
+
+  local __currentBranch=`git symbolic-ref --short -q HEAD` # `` to run commands
+  local __isMaster=`[[ ${__currentBranch} == "master" ]] && echo "true" || echo "false"`
+
+  local __returnVal=$1
+  if [[ "$__returnVal" ]]; then
+    eval $__returnVal="'$__isMaster'"
+  else
+    echo "$__isMaster"
+  fi
+}
+
+### Machine
+
+# Creates the directory and cd to it right away
+dodir(){
+	mkdir -p -- "$1"
+	cd -P -- "$1"
+  clear
+}
+
+# Find files in a given path
+fndfiles(){
+  if [ ! -z "$1" ] && [ ! -z "$2" ]; then
+    la $1 | grep $2
+  else
+    if [ -z "$1" ]; then
+      la | grep .
+    else
+      case $1 in
+        "-h")
+          echo -e "Options:\n    [<value>]\t\tValue To Find\n    [<path> <value>]\tPath Where to Find The Value"
+          ;;
+        *)
+          la | grep "$1"
+          ;;
+      esac
+    fi
+  fi
+}
+
+# To change the End lines of a file
+filetypeb(){
+  local INPUT_FILE=$1
+
+  tr -d '\r' < ${INPUT_FILE} > tmp
+  mv -f tmp ${INPUT_FILE}
+}
+
+
+### Network
+
+# Given a url prints if it was 'OK' or not
+getResponseCode(){
+  responseCode=`curl -s -o /dev/null -I -L -w "%{http_code}" "$1"`
+  echo -e "[RESPONSE_CODE] $responseCode"
+}
+
+# Prints the port of the process running right now
+lsport(){
+  if [ -n "$1" ]; then
+    clear
+    netstat -plen | grep $1
+  else
+    clear
+    netstat -plten
+  fi
+}
+
+# Given a port kills its process
+killport(){
+  fuser -k $1/tcp
+}
+
+### NVM
+
+# Install a version of node using nvm
+nvmc() {
+  if [ -z "$1" ]; then
+    echo -e "Options:\n\tnvmc\t[Version]\tE.g. => 6"
+    return
+  else
+    version="${1}"
+    versionToFind=`echo "v$version"`
+    [[ ! `nvm list | grep $versionToFind` ]] && nvm install ${version}
+    #nvm alias default ${version}
+    nvm use ${version}
+  fi
+}
+
+### NPM
+
+# Installs node.js packages and saves them automatically on its package.json
+inpm(){
+  argv=($@)
+  argvLength=(${#argv[@]})
+
+	if [ -z "$1" ]; then
+		npm i && npm i
+	else
+		if [ ${argv[0]} = "-g" ] || [ ${argv[argvLength - 1]} = "-g" ]; then
+			if [ ${argv[0]} = "-g" ]; then
+				npm install -g ${argv[@]:1}
+			else
+				npm install ${argv[@]:0:argvLength - 1} -g
+			fi
+		else
+			if [ ${argv[0]} = "-D" ] || [ ${argv[argvLength - 1]} = "-D" ]; then
+				if [ ${argv[0]} = "-D" ]; then
+					npm install -D ${argv[@]:1}
+				else
+					npm install ${argv[@]:0:argvLength - 1} -D
+				fi
+			else
+				npm install -S ${argv[@]}
+			fi
+		fi
+	fi
+}
+
