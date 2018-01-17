@@ -7,6 +7,8 @@ set foldlevel=1
 
 " Nerdtree
 let NERDTreeQuitOnOpen = 1
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
 
 " Ctrlp
 let g:ctrlp_show_hidden = 1

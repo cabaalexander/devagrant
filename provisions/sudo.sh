@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "[Provision] sudo.sh"
+echo -e "\n[Provision] sudo.sh\n"
 
 # This is to install apps without showing a bunch stuffs on the stdout
 install-app(){

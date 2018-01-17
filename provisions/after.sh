@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "[Provision] after.sh"
+echo -e "\n[Provision] after.sh\n"
 
 # Run last commands after the `sudo` and `user` installation
 # is done. With a fresh `bash` ( '~/.bashrc' sourced ).

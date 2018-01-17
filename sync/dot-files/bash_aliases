@@ -101,9 +101,9 @@ aliases(){
 lstree(){
   clear
 	if [ -z "$1" ]; then
-		tree -C
+		tree $2 -C
 	else
-		tree -CL $(($1+1))
+		tree $2 -CL $(($1+1))
 	fi
 }
 
@@ -162,9 +162,12 @@ alias nvmd='nvm alias default '
 alias delnpm='rm -rf ./node_modules'
 alias rstnpm='clear && rm -rf ./node_modules && npm i && npm i'
 alias delbuild='rm -rf ./build'
+
+# cds
 alias cdhttp='clear && cd /srv/http && ls'
 alias ..='cd ..'
 alias cdssh='cd ~/.ssh && ls'
+alias cdvagrant='cd /vagrant/'
 
 # Docker
 alias dki='docker images'

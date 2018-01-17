@@ -1,5 +1,5 @@
 " Editor
-set noundofile
+set undofile
 set nu
 set rnu
 set noerrorbells

@@ -10,6 +10,7 @@ sourceIfExists(){
 sourceIfExists ~/.bash_defaults
 sourceIfExists ~/.bash_aliases
 sourceIfExists ~/.bash_utils
+sourceIfExists ~/.bash_autocomplete
 
 # colors!
 green="\e[32m"
@@ -34,3 +35,4 @@ PS1="${blue}\W$green\$(__git_ps1) $reset${emoji} "
 
 export NVM_DIR="/home/ubuntu/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+

@@ -17,6 +17,7 @@ Vagrant.configure("2") do |config|
   # Provisions
   config.vm.provision "shell", path: 'provisions/sudo.sh', privileged: true
   config.vm.provision "shell", path: 'provisions/symlink.sh', privileged: false
+  config.vm.provision "shell", path: 'provisions/cpssh.sh', privileged: false
   config.vm.provision "shell", path: 'provisions/user.sh', privileged: false
   config.vm.provision "shell", path: 'provisions/after.sh', privileged: false
 end
