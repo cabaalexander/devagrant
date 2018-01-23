@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -e "\n[Provision] sudo.sh\n"
+echo "[Provision] sudo.sh"
 
 # This is to install apps without showing a bunch stuffs on the stdout
 install-app(){
@@ -10,7 +10,12 @@ install-app(){
   apt-get install -y ${APP} &> /dev/null
 }
 
-apt-get update
+updateAPT(){
+  echo "[Updating APT]"
+  apt-get update &> /dev/null
+}
+
+updateAPT
 
 # General stuffs
 install-app tree
@@ -22,6 +27,8 @@ install-app python3-pip
 # Install NVIM
 install-app software-properties-common
 add-apt-repository -y ppa:neovim-ppa/unstable
-apt-get update
+
+updateAPT
+
 install-app neovim
 

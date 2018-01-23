@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -e "\n[Provision] cpssh.sh\n"
+echo "[Provision] cpssh.sh"
 
 SSH_PATH=${HOME}/.ssh
 

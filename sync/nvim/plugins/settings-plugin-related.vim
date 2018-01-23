@@ -17,6 +17,9 @@ let g:ctrlP_custom_ignore = 'node_modules\|DS_Store\'
 " Emmet
 let g:user_emmet_leader_key = '<C-Z>'
 
+" Needed to cancel CommandT File selection
+let g:CommandTCancelMap='<Esc>'
+
 
 " Awesome vim color scheme
 try

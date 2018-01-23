@@ -1,8 +1,5 @@
 " ==================== Normal Mode
 
-" Find using Ack
-nnoremap <leader>f :tabnew<CR>:Ack -w "
-
 " Disables search highlight
 nnoremap <leader>h :noh<CR>
 
@@ -34,26 +31,10 @@ nnoremap <leader><leader> <C-^>
 " Zap trailing whitespace in the current buffer
 nnoremap <silent> <leader>zz :call utils#zap()<CR>
 
-" ==================== Local Leader
-
-" Edit file, starting in the same directory as current file
-nnoremap <localleader>e :edit <C-r>=expand('%:p:h') . '/'<CR>
-
-" Plugin Install
-nnoremap <localleader>I :PluginInstall<CR>
-
-
-
-
-
-
-
-
-
-
-
-
-
+" Plugin
+nnoremap <leader>pi :PluginInstall<CR>
+nnoremap <leader>pl :PluginList<CR>
+nnoremap <leader>pc :PluginClean<CR>
 
 " ==================== Visual Mode
 

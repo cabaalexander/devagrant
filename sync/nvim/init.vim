@@ -24,6 +24,7 @@ so ~/.config/nvim/plugins/statusline.vim
 
 " Mappings
 so ~/.config/nvim/plugins/mappings/leader.vim
+so ~/.config/nvim/plugins/mappings/localleader.vim
 so ~/.config/nvim/plugins/mappings/normal.vim
 so ~/.config/nvim/plugins/mappings/visual.vim
 

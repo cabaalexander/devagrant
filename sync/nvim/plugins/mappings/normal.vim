@@ -13,6 +13,6 @@ nnoremap <C-l> <C-w>l
 " Avoid unintentional switches to Ex mode
 nmap Q gq
 
-" To avoid an issue with neovim and vim-tmux-navigator
-nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
+" `gf` opens file under cursor in a new vertical split
+nnoremap gf :vertical wincmd f<CR>
 

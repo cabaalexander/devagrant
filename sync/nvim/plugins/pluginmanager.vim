@@ -8,7 +8,6 @@ call vundle#begin('~/.config/nvim/bundle')
   " Plugins
   Plugin 'rafi/awesome-vim-colorschemes'
   Plugin 'pseewald/anyfold'
-  Plugin 'kien/ctrlp.vim'
   Plugin 'scrooloose/nerdtree'
   Plugin 'Xuyuanp/nerdtree-git-plugin'
   Plugin 'vim-airline/vim-airline'
@@ -20,5 +19,8 @@ call vundle#begin('~/.config/nvim/bundle')
   Plugin 'mxw/vim-jsx'
   Plugin 'tpope/vim-fugitive'
   Plugin 'christoomey/vim-tmux-navigator'
+  Plugin 'wincent/scalpel'
+  Plugin 'joom/vim-commentary'
+  Plugin 'wincent/command-t'
 call vundle#end() " required
 

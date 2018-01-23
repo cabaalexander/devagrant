@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -e "\n[Provision] symlink.sh\n"
+echo "[Provision] symlink.sh"
 
 # Imports
 . /vagrant/sync/bin/normalizepath.sh
