@@ -15,6 +15,10 @@ updateAPT(){
   apt-get update &> /dev/null
 }
 
+# Set TimeZone to America/Santo_Domingo
+echo "[Setting Timezone]"
+timedatectl set-timezone America/Santo_Domingo
+
 updateAPT
 
 # General stuffs
