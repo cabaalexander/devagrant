@@ -1,5 +1,9 @@
 " ==================== Normal Mode
 
+" Move to next/previous buffer
+nnoremap <leader>n :bn
+nnoremap <leader>p :bp
+
 " Disables search highlight
 nnoremap <leader>h :noh<CR>
 
@@ -11,7 +15,7 @@ nnoremap <leader>d :call JSDocAdd()<CR>
 nnoremap <leader>q :q<CR>
 
 " Saves current buffer
-nnoremap <leader>s :w<CR>
+nnoremap <leader>s :wa<CR>
 
 " Quit & Save the currenf buffer
 nnoremap <leader>a :wq<CR>

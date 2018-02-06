@@ -12,11 +12,11 @@ set -g status-fg ${KINDA_WHITE}
 set -g status-bg ${DARK_GRAY}
 
 ## Left Status
-set -g status-left ""
+set -g status-left "#[fg=default bg=red] #S "
 
 ## Right Status
 DATE="#[fg=default bg=${DARK_RED} bold] %d/%m"
-HOUR="#[fg=default bg=${DARK_BLUE} bold] %l:%M:%S %p"
+HOUR="#[fg=default bg=${DARK_BLUE} bold] %l:%M:%S %p "
 set -g status-right "${DATE} ${HOUR}"
 set -g status-right-length 50
 

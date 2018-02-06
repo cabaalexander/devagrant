@@ -55,5 +55,6 @@ Know VIM and TMUX :'V
 # This will be shared at `/projects/` on the guest machine
 $ PROJECTS="projects/directory/on/host/machine"
 $ vagrant up
+$ vagrant ssh
 ```
 

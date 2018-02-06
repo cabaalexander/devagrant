@@ -27,6 +27,27 @@ function echo_yellow(){
   echo -e "${YELLOW}$@${NC}"
 }
 
+# Install gems for ruby
+gemInstall(){
+  GEM=$1
+  echo "[Installing Gem] ${GEM}"
+  gem install ${GEM} &> /dev/null
+}
+
+# This is to install apps without showing a bunch stuffs on the stdout
+installApp(){
+  local APP=$1
+
+  echo "[Installing] ${APP}"
+  apt-get install -y ${APP} &> /dev/null
+}
+
+# Update APT repositories
+updateAPT(){
+  echo "[Updating APT]"
+  apt-get update &> /dev/null
+}
+
 # If this file is running in terminal call the function `normalizePath`
 if [ "$(basename ${0})" = "utils.sh" ]
 then
@@ -44,6 +65,15 @@ then
       ;;
     "echo_yellow")
       echo_yellow "${@}"
+      ;;
+    "gemInstall")
+      gemInstall "${@}"
+      ;;
+    "installApp")
+      installApp "${@}"
+      ;;
+    "updateAPT")
+      updateAPT "${@}"
       ;;
   esac
 fi

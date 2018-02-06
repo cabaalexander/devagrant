@@ -22,5 +22,6 @@ call vundle#begin('~/.config/nvim/bundle')
   Plugin 'wincent/scalpel'
   Plugin 'joom/vim-commentary'
   Plugin 'wincent/command-t'
+  Plugin 'Yggdroot/indentLine'
 call vundle#end() " required
 

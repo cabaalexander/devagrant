@@ -1,15 +1,9 @@
 #!/bin/bash
 
-gemInstall(){
-  GEM=$1
-  echo "[Installing Gem] ${GEM}"
-  gem install ${GEM} &> /dev/null
-}
-
 echo "[Provision] after.sh"
 
-# Run last commands after the `sudo` and `user` installation
-# is done. With a fresh `bash` ( '~/.bashrc' sourced ).
+# Imports
+. /vagrant/sync/bin/utils.sh
 
 # Gems
 gemInstall neovim

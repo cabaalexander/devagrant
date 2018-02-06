@@ -13,6 +13,7 @@ nnoremap <C-l> <C-w>l
 " Avoid unintentional switches to Ex mode
 nmap Q gq
 
-" `gf` opens file under cursor in a new vertical split
-nnoremap gf :vertical wincmd f<CR>
+" Move Lines up and down
+nnoremap - ddp
+nnoremap _ ddkP
 
