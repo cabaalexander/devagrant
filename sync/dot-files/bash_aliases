@@ -1,112 +1,3 @@
-# Functions
-
-grsh(){
-  if [ -z "$1" ]; then
-    echo "How many resets?"
-    return
-  fi
-  git reset --hard HEAD~${1}
-}
-
-grss(){
-  if [ -z "$1" ]; then
-    echo "How many resets?"
-    return
-  fi
-  git reset --soft HEAD~${1}
-}
-
-gsq(){
-  if [ -z "$1" ]; then
-    echo "How many commits do you wanna squash?"
-    return
-  fi
-  git rebase -i HEAD~${1}
-}
-
-gpf(){
-  read -p "Are you sure that you want to pull hard ? Really hard ? [y, n]: " is_hard
-  if [ "$is_hard" == "y" ]
-  then
-    currentBranch=`git symbolic-ref --short -q HEAD` # `` to run commands
-    git fetch -v origin ${currentBranch}
-    git reset --hard origin/${currentBranch}
-  fi
-}
-
-gprune(){
-  # Actualizando los branches locales a como esta en remoto
-  #git checkout master
-  #git fetch
-  #git fetch --prune
-
-  # Lista de branches locales actualizados
-  remoteBranches=`git branch -r | sed 's:  origin/::g'`
-
-
-  # Lista de branches remotos actualizados
-  localBranches=`git branch | cut -c 3-`
-
-  for localBranch in $localBranches; do
-
-    # Variable para saber si $localBranch se va a borrar
-    delCurrentBranch=true
-
-    for remoteB in $remoteBranches; do
-
-      # Revisar si el branch local esta entre los remotos
-      if [ $localBranch = $remoteB ]; then
-        delCurrentBranch=false
-      fi
-    done # Final del for para remote branches
-
-    # Solo sera true si el branch local NO esta entre los branches remotos
-    if [ $delCurrentBranch = true ]; then
-      git branch -D $localB
-    fi
-
-  done # Final del for para local branches
-}
-
-cddropbox(){
-  if [ ! -z "$1" ]; then
-    cd ~/Dropbox/mac/$1
-  else
-    cd ~/Dropbox/mac/ && l
-  fi
-}
-
-aliases(){
-  case $1 in
-    "-e")
-      nvim ~/.bash_aliases
-      ;;
-    "-a")
-      if [ ! -z "$2" ] && [ ! -z "$3" ]; then
-        echo "alias $2='$3'" >> ~/.bash_aliases
-      else
-        echo ":: Error :: Did not add the alias..."
-        echo -e "Options:\n    [-e]\t\t    Edit\n    [-a] <name> <value>\t    Add\n    [-f] <PATTERN>\t    Find"
-      fi
-      ;;
-    "-f")
-      alias | grep "$2"
-      ;;
-    *)
-      echo -e "Options:\n    [-e]\t\t    Edit\n    [-a] <name> <value>\t    Add\n    [-f] <PATTERN>\t    Find"
-      ;;
-  esac
-}
-
-lstree(){
-  clear
-	if [ -z "$1" ]; then
-		tree $2 -C
-	else
-		tree $2 -CL $(($1+1))
-	fi
-}
-
 # Git Aliases
 alias gb='git branch'
 alias gs='clear && git status'
@@ -131,7 +22,6 @@ alias gcl='git clone'
 alias grb='git rebase'
 alias grf='git show-ref'
 alias gma='git merge --abort'
-alias gcmm='git commit -m'
 alias grbm='git rebase master'
 alias grbc='git rebase --continue'
 alias grba='git rebase --abort'
@@ -142,32 +32,39 @@ alias gclean='git clean -df'
 alias lsgst='git stash list'
 alias uptrefs='git fetch origin --prune'
 alias gr='git remote'
+alias gpm='git push origin master'
+
+# Edit
+alias editbutils="nvim ${HOME}/.bash_utils"
+alias editvimconfig='nvim ${HOME}/.config/nvim/init.vim'
+alias editbaliases='nvim ${HOME}/.bash_aliases'
+alias editbash='nvim ${HOME}/.bashrc'
 
 # Other Aliases
 alias xx='exit'
-alias ali='aliases'
-alias editbash='nvim ~/.bashrc'
 alias bgdisown='bg && disown'
 alias poweroff='shutdown -P now'
 alias lsnpm='npm ls --depth 0'
 alias rnpm='npm remove'
 alias lsgem='gem list'
-alias rbow='bower uninstall'
-alias lsbow='bower list'
 alias rst='reset'
-alias editvimconfig='nvim ~/.config/nvim/init.vim'
 alias susu='sudo su'
 alias nvmv='nvm current'
 alias nvmd='nvm alias default '
-alias delnpm='rm -rf ./node_modules'
 alias rstnpm='clear && rm -rf ./node_modules && npm i && npm i'
-alias delbuild='rm -rf ./build'
+alias srbash='source ${HOME}/.bashrc'
+alias ee='nvim'
+alias npmprune='npm prune && npm i && npm i'
+alias gdl='git log -p -1'
+alias gfup='git fetch upstream'
+alias del='rm -rf'
+alias lsnvm='nvm list'
 
 # cds
-alias cdhttp='clear && cd /srv/http && ls'
 alias ..='cd ..'
-alias cdssh='cd ~/.ssh && ls'
+alias cdssh='cd ${HOME}/.ssh && ls'
 alias cdvagrant='cd /vagrant/'
+alias cdprojects='cd /projects/'
 
 # Docker
 alias dki='docker images'
@@ -185,19 +82,10 @@ alias celm-repl="./node_modules/.bin/elm-repl"
 # HAM
 alias conto='gall && gcman && gps -f'
 
-# Other Things
-alias srbash='source ~/.bashrc'
-alias ee='nvim'
-alias npmprune='npm prune && npm i'
-alias gdl='git log -p -1'
-alias gfup='git fetch upstream'
-alias del='rm -rf'
-alias editbutils="nvim $HOME/.bash_utils"
-alias lsnvm='nvm list'
-
 # Tmux
 alias tm='tmux'
 alias tma='tmux attach'
+alias lstmux='tmux ls'
 
 # ls aliases
 alias l='ls -CF --color=auto'

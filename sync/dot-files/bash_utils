@@ -1,35 +1,91 @@
 ### Git
 
-# Alias to push. Validated and stuffs
-gps(){
-  currentBranch=`git symbolic-ref --short -q HEAD` # `` to run commands
-  if [ ! -z $1 ]; then
-    case $1 in
-      "-f")
-        if [ ${currentBranch} == "master" ]; then
-          echo "NO FORCE PUSH ON ${currentBranch^^} =.='"
-        else
-          git push origin ${currentBranch} -f $2
-        fi
-        ;;
-      "-nv")
-          git push origin ${currentBranch} -f --no-verify
-        ;;
-      *)
-        echo -e "Options:\n\t[]\tNormal Push\n\t[-f]\tForce update"
-        ;;
-    esac
-  else
-    if [ ${currentBranch} == "master" ]; then
-      echo "NO PUSH ON ${currentBranch^^} >.>'"
-    else
-      git push origin ${currentBranch}
+gcb(){
+  # Current git branch
+  echo $(git symbolic-ref --short -q HEAD)
+}
+
+gmtm(){
+  # Merges current branch on master
+  currentBranch=$(gcb)
+
+  git checkout master
+  git fetch && git pull --rebase origin master
+
+  git merge --ff-only ${currentBranch}
+  git branch -D ${currentBranch}
+}
+
+gprune(){
+  # Deletes the git branches that are not on github
+  git fetch --prune
+
+  remoteBranches=$(git branch -r | sed 's:[ ]\+origin/::')
+  localBranches=$(git branch | sed 's:[ *]\+::')
+
+  for branch in ${localBranches}
+  do
+    isOnRemote=$(echo ${remoteBranches} | grep "${branch}")
+    if [ ! -n "${isOnRemote}" ]
+    then
+      git branch -D ${branch}
     fi
+  done
+}
+
+grsh(){
+  # Reset hard a range of commits from git
+  if [ -z "$1" ]; then
+    echo "How many resets?"
+    return 1
+  fi
+  git reset --hard HEAD~${1}
+}
+
+grss(){
+  # Reset soft a range of commits from git
+  if [ -z "$1" ]; then
+    echo "How many resets?"
+    return 1
+  fi
+  git reset --soft HEAD~${1}
+}
+
+gsq(){
+  # Squash a range of commits
+  if [ -z "$1" ]; then
+    echo "How many commits do you wanna squash?"
+    return 1
+  fi
+  git rebase -i HEAD~${1}
+}
+
+gpf(){
+  # Git pulls "hard" from a repo
+  read -p "Are you sure that you want to pull hard ? Really, reaaally hard ? [y, n]: " isHard
+  if [ "$isHard" == "y" ]
+  then
+    currentBranch=$(gcb)
+    git fetch -v origin ${currentBranch}
+    git reset --hard origin/${currentBranch}
   fi
 }
 
-# Displays current github user, password and ssh key
+gps(){
+  # Alias to push. Validated and stuffs
+  currentBranch=$(gcb)
+
+  if [ "${currentBranch}" == "master" ]
+  then
+    echo "¯\_(ツ)_/¯"
+    return 1
+  fi
+
+  git push origin ${currentBranch} ${@}
+}
+
 ginfo(){
+  # Displays current github user, password and ssh key
   clear
   git config --global user.name
   git config --global user.email
@@ -43,15 +99,15 @@ ginfo(){
   fi
 }
 
-# If you are on master branch returns true otherwise false
-checkIfMaster(){
-  if [ ! -d "`pwd`/.git" ]; then
-    echo [Error] No git repository on this path
-    return
+checkifmaster(){
+  # If you are on master branch returns true otherwise false
+  if [ ! -d "$(pwd)/.git" ]; then
+    echo '[Error] No git repository on this path'
+    return 1
   fi
 
-  local __currentBranch=`git symbolic-ref --short -q HEAD` # `` to run commands
-  local __isMaster=`[[ ${__currentBranch} == "master" ]] && echo "true" || echo "false"`
+  local __currentBranch=$(gcb)
+  local __isMaster=$([[ ${__currentBranch} == "master" ]] && echo "true" || echo "false")
 
   local __returnVal=$1
   if [[ "$__returnVal" ]]; then
@@ -61,37 +117,27 @@ checkIfMaster(){
   fi
 }
 
+lstree(){
+  # Displays files in a tree view
+  clear
+	if [ -z "$1" ]; then
+		tree $2 -C
+	else
+		tree $2 -CL $(($1+1))
+	fi
+}
+
 ### Machine
 
-# Creates the directory and cd to it right away
 dodir(){
+  # Creates the directory and cd to it right away
 	mkdir -p -- "$1"
 	cd -P -- "$1"
   clear
 }
 
-# Find files in a given path
-fndfiles(){
-  if [ ! -z "$1" ] && [ ! -z "$2" ]; then
-    la $1 | grep $2
-  else
-    if [ -z "$1" ]; then
-      la | grep .
-    else
-      case $1 in
-        "-h")
-          echo -e "Options:\n    [<value>]\t\tValue To Find\n    [<path> <value>]\tPath Where to Find The Value"
-          ;;
-        *)
-          la | grep "$1"
-          ;;
-      esac
-    fi
-  fi
-}
-
-# To change the End lines of a file
 filetypeb(){
+  # To change the End lines of a file
   local INPUT_FILE=$1
 
   tr -d '\r' < ${INPUT_FILE} > tmp
@@ -101,14 +147,14 @@ filetypeb(){
 
 ### Network
 
-# Given a url prints if it was 'OK' or not
-getResponseCode(){
-  responseCode=`curl -s -o /dev/null -I -L -w "%{http_code}" "$1"`
-  echo -e "[RESPONSE_CODE] $responseCode"
+getresponsecode(){
+  # Given a url prints if it was 'OK' or not
+  responseCode=$(curl -s -o /dev/null -I -L -w "%{http_code}" "$1")
+  echo -e "$responseCode"
 }
 
-# Prints the port of the process running right now
 lsport(){
+  # Prints the port of the process running right now
   if [ -n "$1" ]; then
     clear
     netstat -plen | grep $1
@@ -118,54 +164,63 @@ lsport(){
   fi
 }
 
-# Given a port kills its process
 killport(){
+  # Given a port kills its process
   fuser -k $1/tcp
 }
 
 ### NVM
 
-# Install a version of node using nvm
 nvmc() {
+  # Install a version of node using nvm
   if [ -z "$1" ]; then
     echo -e "Options:\n\tnvmc\t[Version]\tE.g. => 6"
-    return
+    return 1
   else
     version="${1}"
-    versionToFind=`echo "v$version"`
-    [[ ! `nvm list | grep $versionToFind` ]] && nvm install ${version}
-    #nvm alias default ${version}
+    versionToFind=$(echo "v$version")
+    versionFound=$(nvm list | grep $versionToFind)
+
+    [[ ! ${versionFound} ]] && nvm install ${version}
     nvm use ${version}
   fi
 }
 
-### NPM
+isglobalflagfirstorlast(){
+  # Checks if the global flag is the first or last parameter
+  first=${1}
+  last=${!#}
 
-# Installs node.js packages and saves them automatically on its package.json
+  if [ "${first}" == "-g" ]
+  then
+    echo "first"
+  elif [ "${last}" == "-g" ]
+  then
+    echo "last"
+  fi
+}
+
 inpm(){
-  argv=($@)
-  argvLength=(${#argv[@]})
+  # Installs node.js packages and saves them automatically on its package.json
+  firstOrLast=$(isglobalflagfirstorlast ${@})
+  flag=$([[ -n "${firstOrLast}" ]] && echo '-g')
+
+  if [ "${firstOrLast}" == "first" ]
+  then
+    remainingArgs=${@: 2} # all but first
+  elif [ "${firstOrLast}" == "last" ]
+  then
+    remainingArgs=${@: 1: ($#-1)} # all but last
+  else
+    remainingArgs=${@}
+  fi
 
 	if [ -z "$1" ]; then
 		npm i && npm i
-	else
-		if [ ${argv[0]} = "-g" ] || [ ${argv[argvLength - 1]} = "-g" ]; then
-			if [ ${argv[0]} = "-g" ]; then
-				npm install -g ${argv[@]:1}
-			else
-				npm install ${argv[@]:0:argvLength - 1} -g
-			fi
-		else
-			if [ ${argv[0]} = "-D" ] || [ ${argv[argvLength - 1]} = "-D" ]; then
-				if [ ${argv[0]} = "-D" ]; then
-					npm install -D ${argv[@]:1}
-				else
-					npm install ${argv[@]:0:argvLength - 1} -D
-				fi
-			else
-				npm install -S ${argv[@]}
-			fi
-		fi
+    return 0
 	fi
+
+  npm i ${remainingArgs} ${flag}
+  return 0
 }
 

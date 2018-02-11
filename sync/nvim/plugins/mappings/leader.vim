@@ -1,8 +1,8 @@
 " ==================== Normal Mode
 
 " Move to next/previous buffer
-nnoremap <leader>n :bn
-nnoremap <leader>p :bp
+nnoremap <leader>n :bn<CR>
+nnoremap <leader>p :bp<CR>
 
 " Disables search highlight
 nnoremap <leader>h :noh<CR>
