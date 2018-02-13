@@ -13,7 +13,6 @@ call vundle#begin('~/.config/nvim/bundle')
   Plugin 'vim-airline/vim-airline'
   Plugin 'vim-airline/vim-airline-themes'
   Plugin 'mattn/emmet-vim'
-  Plugin 'mileszs/ack.vim'
   Plugin 'airblade/vim-gitgutter'
   Plugin 'joegesualdo/jsdoc.vim'
   Plugin 'mxw/vim-jsx'
@@ -23,5 +22,6 @@ call vundle#begin('~/.config/nvim/bundle')
   Plugin 'joom/vim-commentary'
   Plugin 'wincent/command-t'
   Plugin 'Yggdroot/indentLine'
+  Plugin 'pangloss/vim-javascript'
 call vundle#end() " required
 

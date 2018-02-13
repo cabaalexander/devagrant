@@ -1,3 +1,6 @@
+" Vim Jsx
+let g:jsx_ext_required = 0
+
 " IndentLine
 let g:indentLine_char = '│'
 
@@ -21,7 +24,6 @@ let g:user_emmet_leader_key = '<C-q>'
 
 " Needed to cancel CommandT File selection
 let g:CommandTCancelMap='<Esc>'
-
 
 " Awesome vim color scheme
 try

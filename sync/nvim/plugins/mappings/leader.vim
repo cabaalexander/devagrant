@@ -23,6 +23,9 @@ nnoremap <leader>a :wq<CR>
 " Quit All
 nnoremap <leader>x :qa<CR>
 
+" Quit All --force
+nnoremap <leader>X :qa!<CR>
+
 " Source VIMRC
 nnoremap <leader>rv :source<space>$MYVIMRC<CR>
 

@@ -17,3 +17,6 @@ nmap Q gq
 nnoremap - ddp
 nnoremap _ ddkP
 
+" Toggle fold current position
+nnoremap <s-tab> za
+

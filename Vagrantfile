@@ -10,9 +10,10 @@ Vagrant.configure("2") do |config|
     vb.name = "Devagrant"
     vb.memory = 1024
     vb.cpus = 2
-
-    vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 1000 ]
   end
+
+  # Host only network
+  config.vm.network "private_network", ip: "192.168.0.8"
 
   # Provisions
   config.vm.provision "shell", path: 'provisions/sudo.sh', privileged: true

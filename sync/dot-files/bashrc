@@ -39,3 +39,6 @@ export NVM_DIR="/home/ubuntu/.nvm"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# Add yarn binary files
+export PATH="$PATH:$HOME/.yarn/bin"
