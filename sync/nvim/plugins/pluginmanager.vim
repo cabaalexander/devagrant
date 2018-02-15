@@ -31,5 +31,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'fszymanski/deoplete-emoji'
   Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+  Plug 'tpope/vim-obsession'
 call plug#end()
 
