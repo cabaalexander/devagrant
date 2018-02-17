@@ -23,5 +23,8 @@ call vundle#begin('~/.config/nvim/bundle')
   Plugin 'wincent/command-t'
   Plugin 'Yggdroot/indentLine'
   Plugin 'pangloss/vim-javascript'
+  Plugin 'tpope/vim-surround'
+  Plugin 'michaeljsmith/vim-indent-object'
+  Plugin 'easymotion/vim-easymotion'
 call vundle#end() " required
 

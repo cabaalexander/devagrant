@@ -32,9 +32,6 @@ nnoremap <leader>rv :source<space>$MYVIMRC<CR>
 " Show Git's Blame :: Plugin Related
 nnoremap <leader>gb :Gblame<CR>
 
-" Open last buffer
-nnoremap <leader><leader> <C-^>
-
 " Zap trailing whitespace in the current buffer
 nnoremap <silent> <leader>zz :call utils#zap()<CR>
 
@@ -42,6 +39,7 @@ nnoremap <silent> <leader>zz :call utils#zap()<CR>
 nnoremap <leader>pi :PluginInstall<CR>
 nnoremap <leader>pl :PluginList<CR>
 nnoremap <leader>pc :PluginClean<CR>
+nnoremap <leader>pu :PluginUpdate<CR>
 
 " ==================== Visual Mode
 

@@ -23,5 +23,5 @@ set wildignore+=*/node_modules
 let mapleader = "\<space>"
 
 " Change <localleader> key to backslash i.e. \
-let maplocalleader = "\\"
+let maplocalleader = ","
 
