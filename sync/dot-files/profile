@@ -20,6 +20,15 @@ fi
 PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+PATH="$PATH:$HOME/.rvm/bin"
+
+# Add RVM to PATH for scripting.
+PATH="$PATH:$HOME/.rvm/bin"
+
+# Add yarn binary files
+PATH="$PATH:$HOME/.yarn/bin"
+
+
+[[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"  # This loads nvm
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

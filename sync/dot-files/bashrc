@@ -33,12 +33,3 @@ export GIT_PS1_SHOWCOLORHINTS=1
 
 PS1="${blue}\W$green\$(__git_ps1) $reset${emoji} "
 
-export NVM_DIR="/home/ubuntu/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-# Add yarn binary files
-export PATH="$PATH:$HOME/.yarn/bin"
