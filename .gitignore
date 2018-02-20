@@ -3,6 +3,7 @@
 *.un~
 *.bk
 *.log
+*.netrwhist
 
 # Directories
 config/
@@ -11,6 +12,9 @@ config/
 .vagrant/
 
 # vim sync folder
-sync/**/bundle
+sync/**/plugged
 sync/**/.cache
+
+# vim-plug autoload-file
+sync/**/autoload/plug.vim
 

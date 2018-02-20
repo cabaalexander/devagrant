@@ -14,8 +14,8 @@ nnoremap <C-l> <C-w>l
 nmap Q gq
 
 " Move Lines up and down
-nnoremap - ddp
-nnoremap _ ddkP
+nnoremap 0 ddp
+nnoremap ) ddkP
 
 " Toggle fold current position
 nnoremap <s-tab> za

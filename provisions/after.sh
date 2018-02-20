@@ -8,17 +8,12 @@ echo "[Provision] after.sh"
 # Gems
 gemInstall neovim
 
+# pip Install
+pipInstall neovim
+
 # Install NVIM Plugins
 echo "[Installing] NVIM Plugins"
-nvim -c PluginInstall -c qa! &> /dev/null
-
-# Compile `command-t` NVIM Plugin
-echo "[Compiling] NVM Plugin 'command-t'"
-(
-cd ${HOME}/.config/nvim/bundle/command-t/ruby/command-t/ext/command-t
-ruby extconf.rb
-make
-)
+nvim -c PlugInstall -c qa! &> /dev/null
 
 # Install TMUX plugins :: Taken from -> (https://github.com/tmux-plugins/tpm/issues/6#issuecomment-54520698)
 

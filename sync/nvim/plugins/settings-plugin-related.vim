@@ -15,12 +15,8 @@ let NERDTreeQuitOnOpen = 1
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 
-" Ctrlp
-let g:ctrlp_show_hidden = 1
-let g:ctrlP_custom_ignore = 'node_modules\|DS_Store\'
-
 " Emmet
-let g:user_emmet_leader_key = '<C-q>'
+let g:user_emmet_leader_key = '<M-q>'
 
 " Needed to cancel CommandT File selection
 let g:CommandTCancelMap='<Esc>'
@@ -31,4 +27,16 @@ try
   set background=dark
 catch
 endtry
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+
+" Deoplete-tern
+let g:deoplete#sources#ternjs#docs = 1
+let g:deoplete#sources#ternjs#include_keywords = 1
+let g:deoplete#sources#ternjs#types = 1
+let g:deoplete#sources#ternjs#filetypes = [
+  \ 'jsx',
+  \ 'js',
+  \ ]
 

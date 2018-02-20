@@ -1,7 +1,3 @@
-" Required:
-syntax enable
-filetype off
-
 if &compatible
   set nocompatible
 endif
@@ -27,7 +23,4 @@ so ~/.config/nvim/plugins/mappings/leader.vim
 so ~/.config/nvim/plugins/mappings/localleader.vim
 so ~/.config/nvim/plugins/mappings/normal.vim
 so ~/.config/nvim/plugins/mappings/visual.vim
-
-" This needs to be after the plugins in order to work
-filetype plugin indent on
 

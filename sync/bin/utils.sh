@@ -34,6 +34,13 @@ gemInstall(){
   gem install ${GEM} &> /dev/null
 }
 
+# Install modules for python
+pipInstall(){
+  MODULE=$1
+  echo "[Installing Python] ${MODULE}"
+  pip3 install ${MODULE} &> /dev/null
+}
+
 # This is to install apps without showing a bunch stuffs on the stdout
 installApp(){
   local APP=$1
@@ -74,6 +81,9 @@ then
       ;;
     "updateAPT")
       updateAPT "${@}"
+      ;;
+    "pipInstall")
+      pipInstall "${@}"
       ;;
   esac
 fi

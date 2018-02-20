@@ -35,11 +35,12 @@ nnoremap <leader>gb :Gblame<CR>
 " Zap trailing whitespace in the current buffer
 nnoremap <silent> <leader>zz :call utils#zap()<CR>
 
-" Plugin
-nnoremap <leader>pi :PluginInstall<CR>
-nnoremap <leader>pl :PluginList<CR>
-nnoremap <leader>pc :PluginClean<CR>
-nnoremap <leader>pu :PluginUpdate<CR>
+" Plugin Manager
+nnoremap <leader>pi :PlugInstall<CR>
+nnoremap <leader>pl :PlugStatus<CR>
+nnoremap <leader>pc :PlugClean<CR>
+nnoremap <leader>pu :PlugUpdate<CR>
+nnoremap <leader>pU :PlugUpgrade<CR>
 
 " ==================== Visual Mode
 
