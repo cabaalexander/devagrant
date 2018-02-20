@@ -32,7 +32,7 @@ alias gclean='git clean -df'
 alias lsgst='git stash list'
 alias uptrefs='git fetch origin --prune'
 alias gr='git remote'
-alias gpm='git push origin master'
+alias gpsm='git push origin master'
 
 # Edit
 alias editbutils="nvim ${HOME}/.bash_utils"
