@@ -9,6 +9,7 @@ set shiftwidth=2
 set nobackup
 set nowritebackup
 set noswapfile
+set autochdir
 
 " Show file options above the command line
 set wildmenu

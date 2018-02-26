@@ -25,3 +25,17 @@ function! utils#obsessed() abort
   endif
 endfunction
 
+function! utils#toggleNumbers() abort
+  if &nu > 0
+    set nu!
+  else
+    set nu
+  endif
+
+  if &relativenumber > 0
+    set relativenumber!
+  else
+    set relativenumber
+  endif
+endfunction
+

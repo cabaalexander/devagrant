@@ -1,5 +1,3 @@
-### Git
-
 gcb(){
   # Current git branch
   echo $(git symbolic-ref --short -q HEAD)
@@ -119,15 +117,11 @@ checkifmaster(){
 
 lstree(){
   # Displays files in a tree view
+  LEVEL=${1}
+  IGNORE="node_modules|build"
   clear
-	if [ -z "$1" ]; then
-		tree $2 -C
-	else
-		tree $2 -CL $(($1+1))
-	fi
+  tree -I ${IGNORE} -CL $((${LEVEL} + 1))
 }
-
-### Machine
 
 dodir(){
   # Creates the directory and cd to it right away
@@ -144,8 +138,6 @@ filetypeb(){
   mv -f tmp ${INPUT_FILE}
 }
 
-
-### Network
 
 getresponsecode(){
   # Given a url prints if it was 'OK' or not
@@ -168,8 +160,6 @@ killport(){
   # Given a port kills its process
   fuser -k $1/tcp
 }
-
-### NVM
 
 nvmc() {
   # Install a version of node using nvm

@@ -32,5 +32,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'fszymanski/deoplete-emoji'
   Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
   Plug 'tpope/vim-obsession'
+  Plug 'styled-components/vim-styled-components'
+  Plug 'brooth/far.vim'
+  Plug 'w0rp/ale'
 call plug#end()
 
