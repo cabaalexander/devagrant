@@ -44,21 +44,26 @@ alias editbash='nvim ${HOME}/.bashrc'
 alias xx='exit'
 alias bgdisown='bg && disown'
 alias poweroff='shutdown -P now'
-alias lsnpm='npm ls --depth 0'
-alias rnpm='npm remove'
 alias lsgem='gem list'
 alias rst='reset'
 alias susu='sudo su'
 alias nvmv='nvm current'
 alias nvmd='nvm alias default '
-alias rstnpm='clear && rm -rf ./node_modules && npm i && npm i'
 alias srbash='source ${HOME}/.bashrc'
 alias ee='nvim'
-alias npmprune='npm prune && npm i && npm i'
 alias gdl='git log -p -1'
 alias gfup='git fetch upstream'
 alias del='rm -rf'
 alias lsnvm='nvm list'
+
+# npm
+alias npmprune='npm prune && npm i && npm i'
+alias rstnpm='clear && rm -rf ./node_modules && npm i && npm i'
+alias lsnpm='npm ls --depth 0'
+alias rnpm='npm remove'
+
+# yarn
+alias lsyarn='yarn list --depth=0'
 
 # cds
 alias ..='cd ..'

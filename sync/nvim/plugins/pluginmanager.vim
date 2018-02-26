@@ -5,32 +5,41 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
-  Plug 'rafi/awesome-vim-colorschemes'
+  " Editor
   Plug 'pseewald/anyfold'
-  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-  Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'mattn/emmet-vim'
-  Plug 'airblade/vim-gitgutter'
-  Plug 'joegesualdo/jsdoc.vim'
-  Plug 'mxw/vim-jsx'
-  Plug 'tpope/vim-fugitive'
-  Plug 'christoomey/vim-tmux-navigator'
-  Plug 'wincent/scalpel'
   Plug 'joom/vim-commentary'
-  Plug 'wincent/command-t', {
-    \   'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make'
-    \ }
-  Plug 'Yggdroot/indentLine'
-  Plug 'pangloss/vim-javascript'
-  Plug 'tpope/vim-surround'
-  Plug 'michaeljsmith/vim-indent-object'
+  Plug 'mattn/emmet-vim'
+  Plug 'tpope/vim-obsession'
+  Plug 'w0rp/ale'
+  Plug 'tpope/vim-fugitive'
+  " Movement / Modes
   Plug 'easymotion/vim-easymotion'
-  Plug 'tpope/vim-vinegar'
+  Plug 'michaeljsmith/vim-indent-object'
+  Plug 'tpope/vim-surround'
+  Plug 'christoomey/vim-tmux-navigator'
+  " Autocompletion
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'fszymanski/deoplete-emoji'
   Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-  Plug 'tpope/vim-obsession'
+  " UI
+  Plug 'airblade/vim-gitgutter'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'rafi/awesome-vim-colorschemes'
+  Plug 'tpope/vim-vinegar'
+  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+  Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+  Plug 'Yggdroot/indentLine'
+  " Search
+  Plug 'brooth/far.vim'
+  Plug 'wincent/scalpel'
+  Plug 'wincent/command-t', {
+    \   'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make'
+    \ }
+  " Javascript / React
+  Plug 'pangloss/vim-javascript'
+  Plug 'mxw/vim-jsx'
+  Plug 'styled-components/vim-styled-components'
+  Plug 'joegesualdo/jsdoc.vim'
 call plug#end()
 

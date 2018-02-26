@@ -1,8 +1,7 @@
 #!/bin/bash
 
-NORMALIZE_ERROR_PATH=/tmp/normalize
-
 normalizePath(){
+  NORMALIZE_ERROR_PATH=/tmp/normalize
   FILE_PATH=${1}
 
   [ -z "${FILE_PATH}" ] && return 1
