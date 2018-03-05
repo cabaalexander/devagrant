@@ -10,3 +10,6 @@ nnoremap <localleader><localleader> <C-^>
 " Toggle linenumbers
 nnoremap <localleader>tn :call utils#toggleNumbers()<CR>
 
+" Disables search highlight
+nnoremap <localleader>h :noh<CR>
+

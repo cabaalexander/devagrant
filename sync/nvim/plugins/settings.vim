@@ -9,7 +9,6 @@ set shiftwidth=2
 set nobackup
 set nowritebackup
 set noswapfile
-set autochdir
 
 " Show file options above the command line
 set wildmenu
@@ -17,7 +16,7 @@ set wildmenu
 " Don't offer to open certain files/directories
 " (These are a sort of break lines) ¯\_(ツ)_/¯
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico
-set wildignore+=*.pdf,*.psd,*.un~
+set wildignore+=*.pdf,*.psd,*.un~,Session.vim
 set wildignore+=*/node_modules
 
 " Change <leader> key to space

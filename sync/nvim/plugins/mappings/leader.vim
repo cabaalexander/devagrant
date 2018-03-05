@@ -4,9 +4,6 @@
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
 
-" Disables search highlight
-nnoremap <leader>h :noh<CR>
-
 " TODO should be moved to a autocmd file for .js files
 " Adds JS Function Documentation
 nnoremap <leader>d :call JSDocAdd()<CR>
@@ -41,6 +38,9 @@ nnoremap <leader>pl :PlugStatus<CR>
 nnoremap <leader>pc :PlugClean<CR>
 nnoremap <leader>pu :PlugUpdate<CR>
 nnoremap <leader>pU :PlugUpgrade<CR>
+
+" Sets the working directory to current buffer
+nnoremap <silent> <leader>lcd :call utils#toggleLCD()<CR>
 
 " ==================== Visual Mode
 
