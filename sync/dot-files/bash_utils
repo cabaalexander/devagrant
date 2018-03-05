@@ -214,3 +214,14 @@ inpm(){
   return 0
 }
 
+ee(){
+  # Opens vin in current directory (And 'Session.vim' if exists)
+  FILE=$1
+  if [ -f ./Session.vim ] && [ -z "${FILE}" ]
+  then
+    nvim -S
+  else
+    nvim "${@}"
+  fi
+}
+

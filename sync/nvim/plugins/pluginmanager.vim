@@ -11,12 +11,15 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'mattn/emmet-vim'
   Plug 'tpope/vim-obsession'
   Plug 'w0rp/ale'
-  Plug 'tpope/vim-fugitive'
+  Plug '907th/vim-auto-save'
   " Movement / Modes
   Plug 'easymotion/vim-easymotion'
-  Plug 'michaeljsmith/vim-indent-object'
   Plug 'tpope/vim-surround'
   Plug 'christoomey/vim-tmux-navigator'
+  " Text Objects
+  Plug 'kana/vim-textobj-user'
+  Plug 'michaeljsmith/vim-indent-object'
+  Plug 'kana/vim-textobj-entire'
   " Autocompletion
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'fszymanski/deoplete-emoji'
@@ -30,6 +33,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
   Plug 'Yggdroot/indentLine'
+  Plug 'tpope/vim-fugitive'
   " Search
   Plug 'brooth/far.vim'
   Plug 'wincent/scalpel'

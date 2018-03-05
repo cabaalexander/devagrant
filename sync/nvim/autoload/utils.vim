@@ -1,5 +1,5 @@
-" Zap trailing whitespace
 function! utils#zap() abort
+  " Zap trailing whitespace
   let l:pos=getcurpos()
   let l:search=@/
   keepjumps %substitute/\s\+$//e
@@ -8,6 +8,7 @@ function! utils#zap() abort
 endfunction
 
 function! utils#obsessed() abort
+  " Tries to and creates a session
   if exists(':Obsession') < 1
     echom "Obsession plugin not installed"
     return 1
@@ -16,7 +17,7 @@ function! utils#obsessed() abort
   let l:status = ObsessionStatus()
   let l:session = filereadable('Session.vim')
 
-  if !l:session
+  if !l:session || l:status == '[S]'
     execute('Obsession')
   elseif l:status == '[$]'
     echom "You're Obsessed"
@@ -26,6 +27,7 @@ function! utils#obsessed() abort
 endfunction
 
 function! utils#toggleNumbers() abort
+  " Hides or shows line numbers
   if &nu > 0
     set nu!
   else
@@ -39,3 +41,20 @@ function! utils#toggleNumbers() abort
   endif
 endfunction
 
+function! utils#toggleLCD() abort
+  " Change the LCD between root and current buffer
+  if get(b:, 'initialLCD') == '0'
+    let b:initialLCD=getcwd()
+  endif
+
+  if !get(b:, 'toggleLCDBool')
+    let b:path=expand("%:p:h")
+    let b:toggleLCDBool=1 " toggle true
+  else
+    let b:path=b:initialLCD
+    let b:toggleLCDBool=0 " toggle false
+  endif
+
+  execute("lcd " . b:path)
+  echom "LCD changed to: " . b:path
+endfunction

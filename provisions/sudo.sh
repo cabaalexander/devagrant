@@ -18,7 +18,6 @@ installApp git
 installApp tmux
 installApp python3-pip
 
-
 # Install NVIM
 installApp software-properties-common
 add-apt-repository -y ppa:neovim-ppa/unstable
