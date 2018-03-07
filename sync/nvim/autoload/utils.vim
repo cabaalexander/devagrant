@@ -58,3 +58,12 @@ function! utils#toggleLCD() abort
   execute("lcd " . b:path)
   echom "LCD changed to: " . b:path
 endfunction
+
+function! utils#nerdtreeIgnore() abort
+  " Returns a list elements in the .gitignore_global file
+  let l:homePrefix=expand('~') . "/"
+  let l:lines=readfile(l:homePrefix . ".gitignore_global")
+  let l:lines=filter(l:lines, {idx, val -> strlen(val) && val !~ "^#"})
+
+  return l:lines
+endfunction

@@ -14,6 +14,7 @@ let anyfold_activate = 1
 let NERDTreeQuitOnOpen = 1
 let g:NERDTreeDirArrowExpandable = '►'
 let g:NERDTreeDirArrowCollapsible = '▼'
+let g:NERDTreeIgnore=utils#nerdtreeIgnore()
 
 " Emmet
 let g:user_emmet_leader_key = '<M-q>'
