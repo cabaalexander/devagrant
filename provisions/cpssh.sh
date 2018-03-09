@@ -6,7 +6,7 @@ main(){
   CONFIG_SSH=/vagrant/config/ssh/*
   SSH_PATH=${HOME}/.ssh
 
-  if [ -z "${CONFIG_SSH}" ]
+  if [ ! -d "${CONFIG_SSH}" ]
   then
     echo "[No './config/ssh/' found]"
     return 1
