@@ -1,8 +1,8 @@
 " ==================== Normal Mode
 
 " Move to next/previous buffer
-nnoremap <leader>n :bn<CR>
-nnoremap <leader>p :bp<CR>
+nnoremap <leader>bn :bn<CR>
+nnoremap <leader>bp :bp<CR>
 
 " TODO should be moved to a autocmd file for .js files
 " Adds JS Function Documentation
