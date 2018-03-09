@@ -9,7 +9,7 @@ main(){
   if [ ! -d "${CONFIG_SSH}" ]
   then
     echo "[No './config/ssh/' found]"
-    return 1
+    return 0
   fi
 
   # Clean id_rsa keys

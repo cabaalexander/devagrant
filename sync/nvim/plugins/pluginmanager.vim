@@ -11,7 +11,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'mattn/emmet-vim'
   Plug 'tpope/vim-obsession'
   Plug 'w0rp/ale'
-  Plug '907th/vim-auto-save'
   " Movement / Modes
   Plug 'easymotion/vim-easymotion'
   Plug 'tpope/vim-surround'
