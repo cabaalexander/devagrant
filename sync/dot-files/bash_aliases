@@ -84,7 +84,7 @@ alias celm-reactor="./node_modules/.bin/elm-reactor"
 alias celm-repl="./node_modules/.bin/elm-repl"
 
 # HAM
-alias conto='gall && gcman && gps -f'
+alias conto='gall && gcman && gps -f --no-verify'
 
 # Tmux
 alias tm='tmux'
