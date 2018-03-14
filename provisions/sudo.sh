@@ -17,12 +17,15 @@ installApp tree
 installApp git
 installApp tmux
 installApp python3-pip
-
-# Install NVIM
 installApp software-properties-common
+
+# Add repositories
 add-apt-repository -y ppa:neovim-ppa/unstable
+add-apt-repository -y ppa:ultradvorka/ppa
 
 updateAPT
 
+# After repositories are added
 installApp neovim
+installApp hh
 

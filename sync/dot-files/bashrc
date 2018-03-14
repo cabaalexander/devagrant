@@ -1,6 +1,12 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Use VI mode in bash
+set -o vi
+
+# Clear the screen
+bind -m vi-insert "\C-l":clear-screen
+
 sourceIfExists(){
   local TARGET=$1
   [ -f ${TARGET} ] && source ${TARGET}
