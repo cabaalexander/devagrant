@@ -15,11 +15,13 @@ Vagrant.configure("2") do |config|
   # Host only network
   config.vm.network "private_network", ip: "192.168.0.8"
 
-  # Provisions
-  config.vm.provision "shell", path: 'provisions/sudo.sh', privileged: true
-  config.vm.provision "shell", path: 'provisions/symlink.sh', privileged: false
-  config.vm.provision "shell", path: 'provisions/cpssh.sh', privileged: false
-  config.vm.provision "shell", path: 'provisions/user.sh', privileged: false
-  config.vm.provision "shell", path: 'provisions/after.sh', privileged: false
+  $script = <<-SCRIPT
+  git clone https://github.com/cabaalexander/dot-files.git
+  cd dot-files
+  ./install-it.sh
+  SCRIPT
+
+  # Clone my dot-files repo and do the magic
+  config.vm.provision "shell", inline: $script, privileged: false
 end
 
