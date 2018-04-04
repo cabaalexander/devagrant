@@ -18,6 +18,8 @@ Vagrant.configure("2") do |config|
   $script = <<-SCRIPT
   git clone https://github.com/cabaalexander/dot-files.git
   cd dot-files
+  git remote remove origin
+  git remote add origin git@github.com:cabaalexander/dot-files.git
   ./install-it.sh
   SCRIPT
 
