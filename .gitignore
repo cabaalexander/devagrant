@@ -11,10 +11,6 @@ config/
 # The machine
 .vagrant/
 
-# vim sync folder
-sync/**/plugged
-sync/**/.cache
-
-# vim-plug autoload-file
-sync/**/autoload/plug.vim
+# Persistent directory
+data/
 
