@@ -16,10 +16,13 @@ Vagrant.configure("2") do |config|
   config.vm.network "private_network", ip: "192.168.0.8"
 
   $script = <<-SCRIPT
-  git clone https://github.com/cabaalexander/dot-files.git
+  git clone https://gitlab.com/cabaalexander/dot-files.git
+
   cd dot-files
+
   git remote remove origin
-  git remote add origin git@github.com:cabaalexander/dot-files.git
+  git remote add origin git@gitlab.com:cabaalexander/dot-files.git
+
   ./install-it.sh
   SCRIPT
 
