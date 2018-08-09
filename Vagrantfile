@@ -3,7 +3,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/xenial64"
 
   # Shared folders
-  config.vm.synced_folder "./data", "/data", create: true
+  config.vm.synced_folder "./sync", "/sync", create: true
   
   # Provider
   config.vm.provider 'virtualbox' do |vb|
@@ -23,7 +23,13 @@ Vagrant.configure("2") do |config|
   git remote remove origin
   git remote add origin git@gitlab.com:cabaalexander/dot-files.git
 
-  ./install-it.sh
+  echo "[Updating APT]"
+  sudo apt-get update &> /dev/null
+
+  echo "[Installing] build-essentials"
+  sudo apt-get install build-essential -y &> /dev/null
+
+  make
   SCRIPT
 
   # Clone my dot-files repo and do the magic
