@@ -12,5 +12,5 @@ config/
 .vagrant/
 
 # Persistent directory
-data/
+sync/
 
