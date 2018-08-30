@@ -1,3 +1,5 @@
+# vim: ft=ruby
+
 Vagrant.configure("2") do |config|
   # Vagrant box
   config.vm.box = "ubuntu/xenial64"
