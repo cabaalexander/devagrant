@@ -4,9 +4,7 @@
 *.bk
 *.log
 *.netrwhist
-
-# Directories
-config/
+**/id_rsa*
 
 # The machine
 .vagrant/

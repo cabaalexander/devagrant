@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
   echo "[Installing] build-essentials"
   sudo apt-get install build-essential -y &> /dev/null
 
-  make
+  make && make install
   SCRIPT
 
   # Clone my dot-files repo and do the magic
