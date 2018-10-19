@@ -2,7 +2,7 @@
 
 Vagrant.configure("2") do |config|
   # Vagrant box
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "archlinux/archlinux"
 
   # Shared folders
   config.vm.synced_folder "./sync", "/sync", create: true
@@ -15,21 +15,20 @@ Vagrant.configure("2") do |config|
   end
 
   # Host only network
-  config.vm.network "private_network", ip: "192.168.0.8"
+  config.vm.network "public_network", ip: "10.0.0.238"
 
   $script = <<-SCRIPT
-  git clone https://gitlab.com/cabaalexander/dot-files.git
+  echo "[Updating PKM]"
+  sudo pacman --noconfirm -Syu &> /dev/null
+  sudo pacman --noconfirm -S base-devel git vim &> /dev/null
+  sudo ln -sf /usr/share/zoneinfo/America/Santo_Domingo /etc/localtime
+
+  git clone https://github.com/cabaalexander/dot-files.git
 
   cd dot-files
 
   git remote remove origin
-  git remote add origin git@gitlab.com:cabaalexander/dot-files.git
-
-  echo "[Updating APT]"
-  sudo apt-get update &> /dev/null
-
-  echo "[Installing] build-essentials"
-  sudo apt-get install build-essential -y &> /dev/null
+  git remote add origin git@github.com:cabaalexander/dot-files.git
 
   make && make install
   SCRIPT
