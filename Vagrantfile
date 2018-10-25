@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
 
   # Shared folders
   config.vm.synced_folder "./sync", "/sync", create: true
-  
+
   # Provider
   config.vm.provider 'virtualbox' do |vb|
     vb.name = "Devagrant"
@@ -14,8 +14,11 @@ Vagrant.configure("2") do |config|
     vb.cpus = 2
   end
 
+  # Hostname
+  config.vm.hostname = "Devagrant-HOST"
+
   # Host only network
-  config.vm.network "public_network", ip: "10.0.0.238"
+  config.vm.network "public_network", :bridge => "wlan0"
 
   $script = <<-SCRIPT
   # Adding mirror list `Santo_Domingo` near(ish)
