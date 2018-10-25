@@ -18,6 +18,9 @@ Vagrant.configure("2") do |config|
   config.vm.network "public_network", ip: "10.0.0.238"
 
   $script = <<-SCRIPT
+  # Adding mirror list `Santo_Domingo` near(ish)
+  sudo cp -f /vagrant/config/etc-pacman-d-mirrorlist /etc/pacman.d/mirrorlist
+
   echo "[Updating PKM]"
   sudo pacman --noconfirm -Syu &> /dev/null
   sudo pacman --noconfirm -S base-devel git vim &> /dev/null
