@@ -25,8 +25,8 @@ Vagrant.configure("2") do |config|
   sudo cp -f /vagrant/config/etc-pacman-d-mirrorlist /etc/pacman.d/mirrorlist
 
   echo "[Updating PKM]"
-  sudo pacman --noconfirm -Syu &> /dev/null
-  sudo pacman --noconfirm -S base-devel git vim &> /dev/null
+  sudo pacman --noconfirm -Syu
+  sudo pacman --noconfirm -S base-devel git vim
   sudo ln -sf /usr/share/zoneinfo/America/Santo_Domingo /etc/localtime
 
   git clone https://github.com/cabaalexander/dot-files.git
