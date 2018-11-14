@@ -18,18 +18,15 @@ Vagrant.configure("2") do |config|
   config.vm.network "public_network", :bridge => "wlan0"
 
   $script = <<-SCRIPT
-  # Adding mirror list `Santo_Domingo` near(ish)
-  sudo cp -f /vagrant/config/etc-pacman-d-mirrorlist /etc/pacman.d/mirrorlist
-
   echo "[Updating PKM]"
   sudo pacman --noconfirm -Syu
   sudo pacman --noconfirm -S base-devel git vim
   sudo ln -sf /usr/share/zoneinfo/America/Santo_Domingo /etc/localtime
 
-  git clone https://github.com/cabaalexander/dot-files.git
+  git clone https://github.com/cabaalexander/dotfiles.git
   SCRIPT
 
-  # Clone my dot-files repo and do the magic
+  # Clone my dotfiles repo and do the magic
   config.vm.provision "shell", inline: $script, privileged: false
 end
 

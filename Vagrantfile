@@ -29,17 +29,17 @@ Vagrant.configure("2") do |config|
   sudo pacman --noconfirm -S base-devel git vim
   sudo ln -sf /usr/share/zoneinfo/America/Santo_Domingo /etc/localtime
 
-  git clone https://github.com/cabaalexander/dot-files.git
+  git clone https://github.com/cabaalexander/dotfiles.git
 
-  cd dot-files
+  cd dotfiles
 
   git remote remove origin
-  git remote add origin git@github.com:cabaalexander/dot-files.git
+  git remote add origin git@github.com:cabaalexander/dotfiles.git
 
   make && make install
   SCRIPT
 
-  # Clone my dot-files repo and do the magic
+  # Clone my dotfiles repo and do the magic
   config.vm.provision "shell", inline: $script, privileged: false
 end
 
