@@ -1,4 +1,10 @@
-# vim: ft=ruby
+# vim: ft=ruby:ts=2:sw=2
+
+def fordward(vagrant_config = "", port_list = [])
+  port_list.each do |port|
+    vagrant_config.vm.network "forwarded_port", guest: port, host: port
+  end
+end
 
 Vagrant.configure("2") do |config|
   # Vagrant box
@@ -20,6 +26,19 @@ Vagrant.configure("2") do |config|
   # Host only network
   config.vm.network "public_network", :bridge => "wlan0"
 
+  # Fordward ports
+  common_ports = [
+    80,
+    3000,
+    4000,
+    5000,
+    8000
+  ]
+
+  fordward(config, 8080..8090)
+  fordward(config, common_ports)
+
+  # Provisioning
   $script = <<-SCRIPT
   # Adding mirror list `Santo_Domingo` near(ish)
   sudo cp -f /vagrant/config/etc-pacman-d-mirrorlist /etc/pacman.d/mirrorlist
@@ -42,4 +61,3 @@ Vagrant.configure("2") do |config|
   # Clone my dotfiles repo and do the magic
   config.vm.provision "shell", inline: $script, privileged: false
 end
-
