@@ -32,7 +32,8 @@ Vagrant.configure("2") do |config|
     3000,
     4000,
     5000,
-    8000
+    8000,
+    35035
   ]
 
   fordward(config, 8080..8090)
