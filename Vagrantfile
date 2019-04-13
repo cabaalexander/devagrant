@@ -21,10 +21,12 @@ Vagrant.configure("2") do |config|
   end
 
   # Hostname
-  config.vm.hostname = "Devagrant-HOST"
+  config.vm.hostname = "Devagrant"
 
   # Host only network
-  config.vm.network "public_network", :bridge => "wlan0"
+  config.vm.network "public_network", bridge: [
+    "en0: Wi-Fi (Wireless)",
+  ]
 
   # Fordward ports
   common_ports = [
