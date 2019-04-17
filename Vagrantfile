@@ -58,7 +58,7 @@ Vagrant.configure("2") do |config|
   git remote remove origin
   git remote add origin git@github.com:cabaalexander/dotfiles.git
 
-  make && make install
+  make && PASSWORD="vagrant" make install
   SCRIPT
 
   # Clone my dotfiles repo and do the magic
