@@ -13,6 +13,11 @@ Vagrant.configure("2") do |config|
   # Shared folders
   config.vm.synced_folder "./sync", "/sync", create: true
 
+  # # Use this in case of no internet connection ¯\\_(ツ)_/¯
+  # config.vm.provider :virtualbox do |vb|
+  #   vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+  # end
+
   # Provider
   config.vm.provider 'virtualbox' do |vb|
     vb.name = "Devagrant"
@@ -58,9 +63,9 @@ Vagrant.configure("2") do |config|
   git remote remove origin
   git remote add origin git@github.com:cabaalexander/dotfiles.git
 
-  make && PASSWORD="vagrant" make install
+  make && make install
   SCRIPT
 
   # Clone my dotfiles repo and do the magic
-  config.vm.provision "shell", inline: $script, privileged: false
+  config.vm.provision "shell", env: {"PASSWORD" => "vagrant"}, inline: $script, privileged: false
 end
