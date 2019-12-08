@@ -23,6 +23,9 @@ Vagrant.configure("2") do |config|
     "en0: Wi-Fi (Wireless)",
   ]
 
+  # Change the ssh port so this can coexists with other machines
+  config.vm.network :forwarded_port, guest: 22, host: 35022
+
   # Provisioning
   $script = <<-SCRIPT
   # Adding mirror list `Santo_Domingo` near(ish)
