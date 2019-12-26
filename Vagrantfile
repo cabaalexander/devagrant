@@ -29,13 +29,12 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "Devagrant"
 
   # Host only network
-  config.vm.network "public_network", bridge: [
-    "en0: Wi-Fi (Wireless)",
+  config.vm.network :public_network, bridge: [
+    "en0: Wi-Fi (Wireless)"
   ]
 
   # Fordward ports
   common_ports = [
-    80,
     3000,
     4000,
     5000,
@@ -43,7 +42,6 @@ Vagrant.configure("2") do |config|
     35035
   ]
 
-  fordward(config, 8080..8090)
   fordward(config, common_ports)
 
   # Provisioning
