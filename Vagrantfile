@@ -1,4 +1,25 @@
 # vim: ft=ruby:ts=2:sw=2
+require 'yaml'
+
+def set_shared_directories(vagrant_config = "")
+  file_path = 'config/shared_folders.conf'
+
+  unless File.file?(file_path)
+    puts "Not '" + file_path + "' found"
+    return
+  end
+
+  shared_folders = YAML.load_file(file_path)
+
+  shared_folders["paths"].each do |path|
+    host_path = path
+    vagrant_path = "/home/vagrant/sync-".concat(File.basename(path))
+
+    if File.exists?(path)
+      vagrant_config.vm.synced_folder host_path, vagrant_path, create: true
+    end
+  end
+end
 
 def fordward(vagrant_config = "", port_list = [])
   port_list.each do |port|
@@ -12,6 +33,7 @@ Vagrant.configure("2") do |config|
 
   # Shared folders
   config.vm.synced_folder "./sync", "/sync", create: true
+  set_shared_directories(config)
 
   # # Use this in case of no internet connection ¯\\_(ツ)_/¯
   # config.vm.provider :virtualbox do |vb|
