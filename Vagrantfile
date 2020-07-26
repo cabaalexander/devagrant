@@ -29,7 +29,7 @@ end
 
 Vagrant.configure("2") do |config|
   # Vagrant box
-  config.vm.box = "archlinux/archlinux"
+  config.vm.box = "terrywang/archlinux"
 
   # Shared folders
   config.vm.synced_folder "./sync", "/sync", create: true
